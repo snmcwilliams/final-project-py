@@ -14,5 +14,5 @@ word_list = [
     'cloudy',
     'trail',
     'rattlesnake',
-    'dolpin'
+    'dolphin'
     ]
