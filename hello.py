@@ -19,7 +19,7 @@ def gameplay(word):
     print(word_selected) # show word/underscores to guess
     print("\n")
 # run until word is guessed or runs out of attempts
-    while not guessed and tries > 0:
+    while not guessed and attempts > 0:
         guess = input("Guess a letter or word: ").upper()
     # conditions for guessing letter
         if len(guess) == 1 and guess.isalpha():
@@ -48,11 +48,11 @@ def gameplay(word):
                 print("Oops, you've already guessed the word", guess)
             elif guess != word:
                 print(guess, "is not the word. Sorry.")
-                tries -= 1
+                attempts -= 1
                 guessed_words.append(guess)
             else:
                 guessed = True
-                word_selection = word
+                word_selected = word
     # conditions for guessing other
         else:
             print("Invalid guess.")
@@ -128,12 +128,11 @@ def display_hangman(attempts):
 # continue to play
 def main():
     word = get_word
-    play(word)
-    while input("Play Again? YES OR NO").upper() == "YES":
+    gameplay(word)
+    while input("Play Again? YES or NO").upper() == "YES":
         word = get_word()
-        play(word)
+        gameplay(word)
 
 # run on command line
 if __name__ == "__main__":
     main()
-
