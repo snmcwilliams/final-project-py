@@ -1,18 +1,17 @@
-# get word list and make random
 import random
 from words import word_list
 
-# select word for game
+
 def get_word():
-    word = random.choice(word_list)
+    word = random.choice(word_list) # select word for game
     return word.upper() # upper for uniformity and comparison
 
 # the game
 def gameplay(word):
     word_selected = "_" * len(word) # place holder for each letter
     guessed = False
-    guessed_letters = [] # stores letters guessed
-    guessed_words = [] # stores words guessed
+    guessed_letters = [] # stores letters
+    guessed_words = [] # stores words
     attempts = 6
     print("Let's play!")
     print(display_hangman(attempts)) # show initial stage
@@ -24,19 +23,19 @@ def gameplay(word):
     # conditions for guessing letter
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print("Oops, you've already guessed the letter", guess)
+                print("Oops, the letter", guess, "has already been attempted.")
             elif guess not in word:
-                print(guess, "is not in the word. Sorry.")
+                print("Sorry, the letter", guess, "is not found in the word.")
                 attempts -= 1
                 guessed_letters.append(guess)
             else:
-                print("Well done, ", guess, " is in the word!")
+                print("Well done,", guess, "is in the word!")
                 guessed_letters.append(guess)
     # display guess occurrences
                 word_as_list = list(word_selected) # string to list for index
-                # find indices where guess occurs in word
+            # find indices where guess occurs in word
                 indices = [i for i, letter in enumerate(word) if letter == guess] # get index and letter at index for each iteration
-                # replace underscore at index with guess
+            # replace underscore at index with guess
                 for index in indices:
                     word_as_list[index] = guess
                 word_selected = "".join(word_as_list) # list to string
@@ -45,15 +44,14 @@ def gameplay(word):
     # conditions for guessing word
         elif len(guess) == len(word) and guess.isalpha():
             if guess in guessed_words:
-                print("Oops, you've already guessed the word", guess)
+                print("Whoopsie,", guess, "has already been attempted.")
             elif guess != word:
-                print(guess, "is not the word. Sorry.")
+                print("Bummer,", guess, "is not the word.")
                 attempts -= 1
                 guessed_words.append(guess)
             else:
                 guessed = True
                 word_selected = word
-    # conditions for guessing other
         else:
             print("Invalid guess.")
     # show after each attempt
@@ -63,7 +61,7 @@ def gameplay(word):
     if guessed:
         print("Awesome, you guessed the word!")
     else:
-        print("Darn it, you've exceeded number of attempts. The word was "+ word + ". Try Again!")
+        print("Darn it, you've exceeded the number of attempts. The word was "+ word + ". Try Again!")
 
 
 def display_hangman(attempts):
@@ -84,6 +82,15 @@ def display_hangman(attempts):
             |      \\|/
             |       |
             |      /
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |       O
+            |      \\|/
+            |       |
+            |
             ---
         """,
         """
@@ -127,9 +134,9 @@ def display_hangman(attempts):
 
 # continue to play
 def main():
-    word = get_word
+    word = get_word()
     gameplay(word)
-    while input("Play Again? YES or NO").upper() == "YES":
+    while input("Play Again? YES or NO ").upper() == "YES":
         word = get_word()
         gameplay(word)
 
