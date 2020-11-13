@@ -1,4 +1,4 @@
-Hangman Game (Console)
+Hangman Game (Command-line)
 
 Players attempt to correctly guess a randomly selected word. Players have up to 6 attempts to guess the word.
 
