@@ -51,3 +51,65 @@ def gameplay(word):
         print(display_hangman(attempts))
         print(word_selected)
         print("\n")
+
+
+
+
+def display_hangman(attempts):
+    stages = [
+        """
+            ---------
+            |       |
+            |       O
+            |      \\|/
+            |       |
+            |      / \\
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |       O
+            |      \\|/
+            |       |
+            |      /
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |       O
+            |      \\|
+            |       |
+            |
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |       O
+            |       |
+            |       |
+            |
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |       O
+            |
+            |
+            |
+            ---
+        """,
+        """
+            ---------
+            |       |
+            |
+            |
+            |
+            |
+            ---
+        """
+    ]
+    return stages[attempts]
