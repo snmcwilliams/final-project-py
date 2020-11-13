@@ -21,7 +21,7 @@ def gameplay(word):
 # run until word is guessed or runs out of attempts
     while not guessed and tries > 0:
         guess = input("Guess a letter or word: ").upper()
-    # conditions for guessing letter - duplicate, not found and is found.
+ # conditions for guessing letter - duplicate, not found and is found.
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
                 print("Oops, you've already guessed the letter", guess)
@@ -32,25 +32,38 @@ def gameplay(word):
             else:
                 print("Well done, ", guess, " is in the word!")
                 guessed_letters.append(guess)
-            # display guess occurrences
+# display guess occurrences
                 word_as_list = list(word_selected) # string to list for index
-                # find indices where guess occurs in word
+            # find indices where guess occurs in word
                 indices = [i for i, letter in enumerate(word) if letter == guess] # get index and letter at index for each iteration
-                # replace underscore at index with guess
+            # replace underscore at index with guess
                 for index in indices:
                     word_as_list[index] = guess
                 word_selected = "".join(word_as_list) # list to string
                 if "_" not in word_selected:
                     guessed = True
-    # conditions for guessing word
+# conditions for guessing word
         elif len(guess) == len(word) and guess.isalpha():
-    # conditions for guessing other
+            if guess in guessed_words:
+                print("Oops, you've already guessed the word", guess)
+            elif guess != word:
+                print(guess, "is not the word. Sorry.")
+                tries -= 1
+                guessed_words.append(guess)
+            else:
+                guessed = True
+                word_selection = word
+# conditions for guessing other
         else:
             print("Invalid guess.")
     # show after each attempt
         print(display_hangman(attempts))
         print(word_selected)
         print("\n")
+    if guessed:
+        print("Awesome, you guessed the word!")
+    else:
+        print("Darn it, you've exceeded number of attempts. The word was "+ word + ". Try Again!")
 
 
 
