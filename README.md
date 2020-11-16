@@ -23,6 +23,6 @@
 
 * Comments documenting major sections of my code
 * My project code is uploaded to GitHub account
-       * in its own repository
-       * with at least 5 commits
+  * in its own repository
+  * with at least 5 commits
 * README file
