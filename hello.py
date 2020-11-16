@@ -13,7 +13,7 @@ def gameplay(word):
     guessed_letters = [] # stores letters
     guessed_words = [] # stores words
     attempts = 6
-    print("Let's play!")
+    print("Let's play! Can you guess this", len(word), "letter word?")
     print(display_hangman(attempts)) # show initial stage
     print(word_selected) # show word/underscores to guess
     print("\n")
@@ -23,7 +23,7 @@ def gameplay(word):
     # conditions for guessing letter
         if len(guess) == 1 and guess.isalpha():
             if guess in guessed_letters:
-                print("Oops, the letter", guess, "has already been attempted.")
+                print("Oops, the letter", guess, "has already been attempted. Letters guessed:", *guessed_letters)
             elif guess not in word:
                 print("Sorry, the letter", guess, "is not found in the word.")
                 attempts -= 1
