@@ -1,10 +1,15 @@
+import csv
 import random
-from words import word_list
+#from words import word_list
 
 
 def get_word():
-    word = random.choice(word_list) # select word for game
-    return word.upper() # upper for uniformity and comparison
+#    word = random.choice(word_list)
+#    return word.upper() # upper for uniformity and comparison
+    with open("words.txt") as csv_file:
+        word_list = csv_file.read().split()
+        word = random.choice(word_list)
+        return word
 
 # the game
 def gameplay(word):
@@ -61,7 +66,7 @@ def gameplay(word):
     if guessed:
         print("Awesome, you guessed the word!")
     else:
-        print("Darn it, you've exceeded the number of attempts. The word was "+ word + ". Try Again!")
+        print("Darn it, you've exceeded the number of attempts. The word was " + word + ". Try Again!")
 
 
 def display_hangman(attempts):
